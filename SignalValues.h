@@ -36,35 +36,52 @@ static const uint32_t SinusOutputData[FUNCTION_LENGTH] = {
 1846U, 1896U, 1947U, 1997U
 };
 
+//Lower notes
+//period for the pit to get LA
+#define A_PERIOD 220.00
+//period for the pit to get SOL
+#define G_PERIOD 196.00
+//period for the pit to get FA
+#define F_PERIOD 174.60
+//period for the pit to get MI
+#define E_PERIOD 164.80
+//period for the pit to get RE
+#define D_PERIOD 146.8
+//period for the pit to get DO
+#define C_PERIOD 130.8
+
+/*
+//Higher notes
+//period for the pit to get LA
+#define A_PERIOD 440.00
+//period for the pit to get SOL
+#define G_PERIOD 392.00
+//period for the pit to get FA
+#define F_PERIOD 349.20
+//period for the pit to get MI
+#define E_PERIOD 329.6
+//period for the pit to get RE
+#define D_PERIOD 293.7
+//period for the pit to get DO
+#define C_PERIOD 361.6
+*/
 
 //the system clock of the Kinetis
 #define SYSTEM_CLOCK CLOCK_GetBusClkFreq()
-//period for the pit to get 1 second
-#define A_PERIOD 220.00
 //pit number to count
 #define LDVAL_trigger_A  ((SYSTEM_CLOCK)/(A_PERIOD*FUNCTION_LENGTH))
-//period for the pit to get 1 second
-#define G_PERIOD 196.00
 //pit number to count
 #define LDVAL_trigger_G  ((SYSTEM_CLOCK)/(G_PERIOD*FUNCTION_LENGTH))
-//period for the pit to get 1 second
-#define F_PERIOD 174.60
 //pit number to count
 #define LDVAL_trigger_F  ((SYSTEM_CLOCK)/(F_PERIOD*FUNCTION_LENGTH))
-//period for the pit to get 1 second
-#define E_PERIOD 164.80
 //pit number to count
 #define LDVAL_trigger_E  ((SYSTEM_CLOCK)/(E_PERIOD*FUNCTION_LENGTH))
-//period for the pit to get 1 second
-#define D_PERIOD 146.8
 //pit number to count
 #define LDVAL_trigger_D  ((SYSTEM_CLOCK)/(D_PERIOD*FUNCTION_LENGTH))
-//period for the pit to get 1 second
-#define C_PERIOD 130.8
 //pit number to count
 #define LDVAL_trigger_C  ((SYSTEM_CLOCK)/(C_PERIOD*FUNCTION_LENGTH))
 
-#define LDVAL_trigger_SEC  (SYSTEM_CLOCK*2)
+#define LDVAL_trigger_SEC  (SYSTEM_CLOCK/2)
 
 typedef enum{
     END=0,
