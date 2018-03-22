@@ -118,6 +118,14 @@ void PIT1_IRQHandler(void)
     }
 }
 
+void PIT2_IRQHandler(void)
+{
+    increaseEnvolv();
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_2, (uint32_t) LDVAL_trigger_SEC/20);
+    PIT_ClearStatusFlags(PIT, kPIT_Chnl_2, PIT_TFLG_TIF_MASK);
+    PIT_StartTimer(PIT, kPIT_Chnl_2);
+}
+
 /*!
  * @brief Main function
  */
@@ -161,6 +169,12 @@ int main(void)
     PIT_EnableInterrupts(PIT, kPIT_Chnl_1, kPIT_TimerInterruptEnable);
     PIT_ClearStatusFlags(PIT, kPIT_Chnl_1, PIT_TFLG_TIF_MASK);
     PIT_StartTimer(PIT, kPIT_Chnl_1);
+
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_2, (uint32_t) LDVAL_trigger_SEC/20);
+    EnableIRQ(PIT2_IRQn);
+    PIT_EnableInterrupts(PIT, kPIT_Chnl_2, kPIT_TimerInterruptEnable);
+    PIT_ClearStatusFlags(PIT, kPIT_Chnl_2, PIT_TFLG_TIF_MASK);
+    PIT_StartTimer(PIT, kPIT_Chnl_2);
 
     while (1)
     {

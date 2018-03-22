@@ -1,8 +1,10 @@
 
 #include "SignalValues.h"
+#include "DataTypeDefinitions.h"
 
 static uint16_t g_counter_sin = 0;
 static uint16_t g_counter_song = 0;
+static ufloat32 g_counter_evolve = 1.00f;
 static volatile bool change_note = true;
 
 static uint32_t Song[] =
@@ -11,7 +13,6 @@ static uint32_t Song[] =
     SOL,SOL,FA,FA,MI,MI,RE,SILENCE,SOL,SOL,FA,FA,MI,MI,DO,
     DO,DO,SOL,SOL,LA,LA,SOL,SILENCE,FA,FA,MI,MI,RE,RE,DO,END
 };
-
 
 uint32_t nextDACValue()
 {
@@ -27,7 +28,8 @@ uint32_t nextDACValue()
         {
             g_counter_sin=0;
         }
-        return SinusOutputData[g_counter_sin];
+
+        return (uint32_t) (SinusOutputData[g_counter_sin]*g_counter_evolve);
     }
 }
 
@@ -90,5 +92,13 @@ uint32_t nextSongNote()
         }
         change_note = true;
         g_counter_sin=0;
+        g_counter_evolve=1;
         return ldval;
+}
+
+void increaseEnvolv()
+{
+    g_counter_evolve-=0.1;
+    if(0 >= g_counter_evolve)
+        g_counter_evolve=0;
 }
