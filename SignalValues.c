@@ -9,7 +9,7 @@ static volatile bool change_note = true;
 
 static uint32_t Song[] =
 {
-    DO,DO,SOL,SOL,LA,LA,END,    SOL,SILENCE,FA,FA,MI,MI,RE,RE,DO,
+    DO,DO,SOL,SOL,LA,LA,SOL,SILENCE,FA,FA,MI,MI,RE,RE,DO,
     SOL,SOL,FA,FA,MI,MI,RE,SILENCE,SOL,SOL,FA,FA,MI,MI,DO,
     DO,DO,SOL,SOL,LA,LA,SOL,SILENCE,FA,FA,MI,MI,RE,RE,DO,END
 };
